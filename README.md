@@ -2,7 +2,7 @@
 
 A SQL-first analysis of two years of sales from a UK online retailer, built around one business decision: **which customer groups should next quarter's retention budget target, and what happens to revenue if we do nothing?** Plain SQL files clean and model the data in DuckDB, a Streamlit dashboard answers three questions, and a one-page memo turns the findings into a recommendation for a non-technical manager.
 
-Independent portfolio project, not affiliated with the retailer. Deploy the dashboard yourself on Streamlit Community Cloud (steps below).
+Independent portfolio project, not affiliated with the retailer.
 
 ## What is this?
 
