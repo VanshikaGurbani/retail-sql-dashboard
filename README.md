@@ -6,7 +6,7 @@ A SQL-first analysis of two years of sales from a UK online retailer, built arou
 
 Independent portfolio project, not affiliated with the retailer.
 
-## In plain English
+## What is this?
 
 An online gift-ware shop recorded every sale for two years. The records are messy: some days appear twice, some sales are reversals of earlier mistakes, and about one sale in five has no customer attached. I cleaned them in SQL (every decision written down and counted), then answered three questions that lead to the decision:
 
