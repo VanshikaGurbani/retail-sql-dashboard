@@ -4,7 +4,7 @@ A SQL-first analysis of two years of sales from a UK online retailer, built arou
 
 Independent portfolio project, not affiliated with the retailer. Deploy the dashboard yourself on Streamlit Community Cloud (steps below).
 
-## In plain English
+## What is this?
 
 An online shop selling gift-ware, mostly to trade buyers, recorded every sale for two years. Those records are messy: the same days are in the file twice, some sales are reversals of earlier mistakes, and about one sale in five has no customer attached. This project cleans them in SQL, with every cleaning decision written down and counted, and then asks three questions that lead to a decision:
 
@@ -73,14 +73,6 @@ Everything between the raw file and the dashboard is plain SQL in [`sql/`](sql),
 
 **Impact is a scenario.** Revenue at risk is measured (quarterly run-rate times measured lapse rate). What a campaign could recover is not: it depends on three assumed reductions in lapse rate, written in `mart.scenario_assumptions`, and every output that uses them says so. The memo recommends a random hold-out so the real effect can be measured.
 
-## Dashboard
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
-Three questions, each with a finding as the chart title, date-range and country filters, a scenario slider (the assumed lapse reduction), a data table behind each chart, and a data caveats tab. Charts use the Okabe-Ito colour-blind-safe palette and never rely on colour alone. The app reads only the CSV files in `exports/`, so it runs without the 46 MB download.
-
 ## Rebuild it in Tableau Public or Power BI
 
 `exports/` holds every mart as a flat CSV (UTF-8, header row), listed in [exports/README.md](exports/README.md). Suggested starting points: `mart_orders.csv` (one row per invoice, filterable by date and country) for the revenue page, `mart_cohorts.csv` for the retention heatmap, `mart_rfm.csv` with `mart_rfm_summary.csv` for segments, and `mart_scenario.csv` for the impact range. No Tableau or Power BI files are included.
@@ -140,12 +132,6 @@ Deciding what a customer "churn" and "revenue" are when the file has no cost, no
 - The dashboard's product table keeps the top 500 products and groups the rest as OTHER to stay small enough to deploy.
 - Many customers are wholesalers and a few accounts are very large, so averages hide a skewed customer base.
 
-## Deploy on Streamlit Community Cloud
-
-1. Push this repository to your GitHub account.
-2. At share.streamlit.io choose **New app**, pick the repository and branch, and set the main file to `app/streamlit_app.py`.
-3. Under advanced settings choose Python 3.12 or 3.13.
-4. Deploy. `requirements.txt` installs what the app needs, and the data it reads is committed in `exports/`.
 
 ## Project layout
 
