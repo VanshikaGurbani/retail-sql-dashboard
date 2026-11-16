@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# raw download, flattened csv, DuckDB files and logs are regenerated (retail fetch-data, retail run-all)
+data/
+.env
+*.log
+.streamlit/secrets.toml
+# resume bullets are kept out of the repo on purpose
+RESUME_BULLETS.md
+.claude/

@@ -1,0 +1,4 @@
+case_name,lapse_reduction
+low,0.05
+mid,0.1
+high,0.2

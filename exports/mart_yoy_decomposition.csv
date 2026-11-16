@@ -1,0 +1,5 @@
+sort_order,driver,year1_value,year2_value,revenue_effect
+1,Active customers,4239.0,4293.0,101392.93
+2,Orders per customer,4.29,4.11,-354561.74
+3,Net revenue per order,444.87,449.75,87377.95
+4,Total change in identified net revenue,8093115.77,7927324.91,-165790.86

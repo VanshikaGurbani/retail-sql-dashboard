@@ -1,0 +1,7 @@
+segment,customers,customer_share,trailing_12m_net_revenue,revenue_share,avg_recency_days,avg_frequency,same_season_customers,same_season_repurchasers,same_season_repurchase_rate,same_season_lapse_rate,repurchase_rate_min,repurchase_rate_max,pooled_repurchase_rate,same_season_next_q_revenue_per_customer,revenue_at_risk_next_quarter,revenue_at_risk_pooled_rates
+Champions,951,0.2215,5258012.18,0.6629,12.32,10.67,931,619,0.6649,0.3351,0.6649,0.8594,0.7625,959.71,440520.89,312222.7543
+Loyal,603,0.1405,995310.26,0.1255,36.45,4.39,610,266,0.4361,0.5639,0.4361,0.75,0.5368,300.14,140322.43,115260.7249
+Dormant,1346,0.3135,585479.46,0.0738,205.28,1.28,1241,136,0.1096,0.8904,0.1096,0.411,0.2126,43.43,130329.33,115256.2466
+"At risk, high frequency",387,0.0901,603336.27,0.0761,133.68,4.33,466,161,0.3455,0.6545,0.2683,0.5657,0.3872,216.12,98721.87,92431.8523
+"Recent, low frequency",535,0.1246,255142.13,0.0322,15.54,1.48,546,136,0.2491,0.7509,0.2491,0.5161,0.3618,113.09,47897.56,40705.2411
+Cooling,471,0.1097,233964.64,0.0295,49.78,1.37,445,89,0.2,0.8,0.1784,0.5013,0.2867,64.36,46792.93,41719.1233

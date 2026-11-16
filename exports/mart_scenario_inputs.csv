@@ -1,0 +1,2 @@
+base_customers,base_trailing_12m_net_revenue,base_quarterly_run_rate,total_revenue_at_risk,at_risk_share_of_run_rate,targeted_customers,targeted_customer_share,targeted_revenue_share,targeted_revenue_at_risk,targeted_share_of_at_risk,targeted_lapse_rate,expected_next_q_revenue_do_nothing,base_weighted_lapse_rate
+4293,7931244.94,1982811.2358,904585.01,0.4562,1941.0,0.4521,0.8645,679565.19,0.7512,0.4699,1326574.35,0.673

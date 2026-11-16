@@ -1,0 +1,6 @@
+# Used by Streamlit Community Cloud to run app/streamlit_app.py. The app reads only the CSV files
+# in exports/, so it needs no raw data. For the full pipeline: pip install -e ".[serve,dev,notebooks]"
+streamlit==1.67.0
+duckdb==2.0.0
+pandas==3.1.1
+numpy==2.5.4

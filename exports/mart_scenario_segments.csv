@@ -1,0 +1,19 @@
+case_name,lapse_reduction,segment,customers,is_targeted,revenue_at_risk_next_quarter,recovered_revenue,recovered_revenue_per_contact
+low,0.05,Champions,951,True,440520.89,22026.04,23.16
+low,0.05,Loyal,603,True,140322.43,7016.12,11.64
+low,0.05,Dormant,1346,False,130329.33,6516.47,4.84
+low,0.05,"At risk, high frequency",387,True,98721.87,4936.09,12.75
+low,0.05,"Recent, low frequency",535,False,47897.56,2394.88,4.48
+low,0.05,Cooling,471,False,46792.93,2339.65,4.97
+mid,0.1,Champions,951,True,440520.89,44052.09,46.32
+mid,0.1,Loyal,603,True,140322.43,14032.24,23.27
+mid,0.1,Dormant,1346,False,130329.33,13032.93,9.68
+mid,0.1,"At risk, high frequency",387,True,98721.87,9872.19,25.51
+mid,0.1,"Recent, low frequency",535,False,47897.56,4789.76,8.95
+mid,0.1,Cooling,471,False,46792.93,4679.29,9.93
+high,0.2,Champions,951,True,440520.89,88104.18,92.64
+high,0.2,Loyal,603,True,140322.43,28064.49,46.54
+high,0.2,Dormant,1346,False,130329.33,26065.87,19.37
+high,0.2,"At risk, high frequency",387,True,98721.87,19744.37,51.02
+high,0.2,"Recent, low frequency",535,False,47897.56,9579.51,17.91
+high,0.2,Cooling,471,False,46792.93,9358.59,19.87

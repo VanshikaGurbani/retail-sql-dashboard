@@ -1,0 +1,4 @@
+case_name,lapse_reduction,customers_contacted,total_revenue_at_risk,targeted_revenue_at_risk,recovered_revenue,recovered_revenue_pooled_rates,recovered_revenue_per_contact
+low,0.05,1941.0,904585.01,679565.19,33978.26,25995.7666,17.51
+mid,0.1,1941.0,904585.01,679565.19,67956.52,51991.5332,35.01
+high,0.2,1941.0,904585.01,679565.19,135913.04,103983.0663,70.02

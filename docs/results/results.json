@@ -1,0 +1,3457 @@
+{
+  "fixture": false,
+  "headline": {
+    "window_start": "2009-12-01",
+    "window_end": "2011-11-30",
+    "raw_rows": 1067371,
+    "kept_rows": 996172,
+    "raw_revenue": 19287250.568,
+    "net_revenue": 18486999.507,
+    "net_revenue_year1": 9156080.904,
+    "net_revenue_year2": 9330918.603,
+    "sales_revenue": 19029370.717,
+    "returns_value": -542371.21,
+    "net_revenue_guest": 2466558.82,
+    "orders": 38700,
+    "units_sold": 10875414,
+    "median_order_value": 301.255,
+    "mean_order_value": 491.7150056072351,
+    "return_rate": 0.028501794308703518,
+    "yoy_growth": 0.019095254927642635,
+    "guest_revenue_share": 0.13342126282126265,
+    "customers": 5824,
+    "one_order_share": 0.28279532967032966,
+    "repeat_share": 0.7172046703296703,
+    "top_decile_revenue_share": 0.6323844525369862,
+    "top1_customer_share": 0.03538437899671251,
+    "median_orders_per_customer": 3.0,
+    "median_days_between_orders": 73.0,
+    "sepnov_share_year1": 0.3609779607294742,
+    "sepnov_share_year2": 0.3751147823617983,
+    "top_country": "United Kingdom",
+    "top_country_share": 0.8530621424005862,
+    "countries": 43,
+    "products": 4738,
+    "top20_products_share": 0.11014023769671322,
+    "identified_revenue_change": -165790.861,
+    "identified_revenue_year1": 8093115.774,
+    "identified_revenue_year2": 7927324.913
+  },
+  "bridge": [
+    {
+      "step": 0,
+      "label": "raw file",
+      "n_rows": 1067371,
+      "revenue": 19287250.568
+    },
+    {
+      "step": 1,
+      "label": "cross_sheet_overlap_copy",
+      "n_rows": -22523,
+      "revenue": -377488.45
+    },
+    {
+      "step": 2,
+      "label": "exact_duplicate_line",
+      "n_rows": -11812,
+      "revenue": -54228.42
+    },
+    {
+      "step": 3,
+      "label": "non_merchandise_charge",
+      "n_rows": -5799,
+      "revenue": 71865.369
+    },
+    {
+      "step": 4,
+      "label": "unparseable_or_zero_quantity",
+      "n_rows": 0,
+      "revenue": 0.0
+    },
+    {
+      "step": 5,
+      "label": "sign_conflict",
+      "n_rows": -3393,
+      "revenue": 0.0
+    },
+    {
+      "step": 6,
+      "label": "nonpositive_price",
+      "n_rows": -2572,
+      "revenue": 0.0
+    },
+    {
+      "step": 7,
+      "label": "outside_analysis_window",
+      "n_rows": -25100,
+      "revenue": -440399.56
+    },
+    {
+      "step": 99,
+      "label": "kept (clean.lines)",
+      "n_rows": 996172,
+      "revenue": 18486999.507
+    }
+  ],
+  "dq": [
+    {
+      "rule_order": 1,
+      "rule": "cross_sheet_overlap_copy",
+      "kind": "excluded",
+      "n_rows": 22523,
+      "share_of_raw_rows": 0.021101378995681912,
+      "revenue": 377488.45,
+      "decision": "The workbook has two sheets that both contain 1 to 9 December 2010. Invoices found in both sheets are identical line for line, so the copy in the later sheet is dropped."
+    },
+    {
+      "rule_order": 2,
+      "rule": "exact_duplicate_line",
+      "kind": "excluded",
+      "n_rows": 11812,
+      "share_of_raw_rows": 0.01106644268956155,
+      "revenue": 54228.42,
+      "decision": "A line identical to an earlier line on the same invoice in every field (product, quantity, price, timestamp, customer, country) is treated as a double entry and dropped. A genuine repeat scan would also be dropped, so revenue can be slightly understated."
+    },
+    {
+      "rule_order": 3,
+      "rule": "non_merchandise_charge",
+      "kind": "excluded",
+      "n_rows": 5799,
+      "share_of_raw_rows": 0.005432975038669779,
+      "revenue": -71865.369,
+      "decision": "Postage, carriage, bank and marketplace fees, manual and discount lines, bad-debt adjustments, gift vouchers and test products are not product sales. They are removed so revenue means merchandise revenue."
+    },
+    {
+      "rule_order": 4,
+      "rule": "unparseable_or_zero_quantity",
+      "kind": "excluded",
+      "n_rows": 0,
+      "share_of_raw_rows": 0.0,
+      "revenue": null,
+      "decision": "A value that cannot be read as a number or date, or a zero quantity. None are expected; the rule exists so a corrupt row cannot slip through silently."
+    },
+    {
+      "rule_order": 5,
+      "rule": "sign_conflict",
+      "kind": "excluded",
+      "n_rows": 3393,
+      "share_of_raw_rows": 0.0031788384732206517,
+      "revenue": 0.0,
+      "decision": "Negative quantity on a normal invoice (stock write-offs, damages and lost items, which carry price 0 and no customer) or positive quantity on a cancellation invoice. These are inventory events, not customer sales or returns."
+    },
+    {
+      "rule_order": 6,
+      "rule": "nonpositive_price",
+      "kind": "excluded",
+      "n_rows": 2572,
+      "share_of_raw_rows": 0.0024096588721259993,
+      "revenue": 0.0,
+      "decision": "A price of zero or below (free items and stock corrections) carries no revenue and would distort basket size and unit counts."
+    },
+    {
+      "rule_order": 7,
+      "rule": "outside_analysis_window",
+      "kind": "excluded",
+      "n_rows": 25100,
+      "share_of_raw_rows": 0.02351572227463553,
+      "revenue": 440399.56,
+      "decision": "December 2011 stops on the 9th. A partial month would look like a sales collapse, so the analysis covers the 24 complete months from December 2009 to November 2011."
+    },
+    {
+      "rule_order": 10,
+      "rule": "missing_customer_id",
+      "kind": "kept_and_flagged",
+      "n_rows": 219299,
+      "share_of_raw_rows": 0.2054571465779003,
+      "revenue": 2466558.82,
+      "decision": "Guest checkouts have no customer ID. They stay in revenue, orders and product KPIs but cannot be followed over time, so they are left out of cohorts and RFM."
+    },
+    {
+      "rule_order": 11,
+      "rule": "return_lines_kept",
+      "kind": "kept_and_flagged",
+      "n_rows": 17568,
+      "share_of_raw_rows": 0.016459131829513824,
+      "revenue": -542371.21,
+      "decision": "Cancellation invoices (invoice number starts with C) are returns or order reversals. They are kept as negative revenue on the cancellation date, so revenue is net of returns."
+    },
+    {
+      "rule_order": 12,
+      "rule": "large_quantity_kept",
+      "kind": "kept_and_flagged",
+      "n_rows": 36,
+      "share_of_raw_rows": 3.3727729158839804e-05,
+      "revenue": 51328.8,
+      "decision": "Lines with an absolute quantity at or above the threshold in dq.params are flagged, not dropped. Some are reversed by a cancellation shortly after and net out of revenue; the rest look like genuine wholesale orders."
+    },
+    {
+      "rule_order": 13,
+      "rule": "missing_description",
+      "kind": "kept_and_flagged",
+      "n_rows": 4382,
+      "share_of_raw_rows": 0.0041054141437232225,
+      "revenue": 0.0,
+      "decision": "Rows with no product description, counted before any other rule. A missing description does not affect revenue; where one survives cleaning, the product name shown is the most common description for its stock code, or the code itself."
+    },
+    {
+      "rule_order": 14,
+      "rule": "stock_code_case_normalised",
+      "kind": "normalised",
+      "n_rows": 3472,
+      "share_of_raw_rows": 0.0032528521010969946,
+      "revenue": 57334.95,
+      "decision": "Stock codes are trimmed and upper-cased so that \"m\" and \"M\" are one code."
+    },
+    {
+      "rule_order": 15,
+      "rule": "description_whitespace_trimmed",
+      "kind": "normalised",
+      "n_rows": 213035,
+      "share_of_raw_rows": 0.19958852170426217,
+      "revenue": 3686737.78,
+      "decision": "Leading and trailing spaces are trimmed from descriptions."
+    },
+    {
+      "rule_order": 16,
+      "rule": "customer_in_two_countries",
+      "kind": "normalised",
+      "n_rows": 12,
+      "share_of_raw_rows": 1.1242576386279935e-05,
+      "revenue": null,
+      "decision": "Customers whose kept lines carry more than one country (a count of customers, not rows). Each is assigned the country of their first sale so customer counts add up across countries."
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2009-12-01",
+      "sales_revenue": 797901.16,
+      "returns_value": -19558.08,
+      "net_revenue": 778343.08,
+      "net_revenue_identified": 658581.66,
+      "net_revenue_guest": 119761.42,
+      "orders": 1666,
+      "orders_identified": 1497,
+      "units_sold": 425218,
+      "active_customers": 951,
+      "new_customers": 951,
+      "returning_customers": 0,
+      "orders_per_customer": 1.5741324921135647,
+      "net_revenue_per_order": 439.9343086172345,
+      "return_rate": 0.024511908216802193,
+      "guest_revenue_share": 0.1538671352997704,
+      "mom_growth": null,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 778343.08,
+      "seasonality_index": 1.0104524486478637
+    },
+    {
+      "month": "2010-01-01",
+      "sales_revenue": 612297.422,
+      "returns_value": -7465.63,
+      "net_revenue": 604831.792,
+      "net_revenue_identified": 526390.162,
+      "net_revenue_guest": 78441.63,
+      "orders": 1049,
+      "orders_identified": 959,
+      "units_sold": 390414,
+      "active_customers": 701,
+      "new_customers": 368,
+      "returning_customers": 333,
+      "orders_per_customer": 1.3680456490727533,
+      "net_revenue_per_order": 548.8948508863399,
+      "return_rate": 0.01219281632056259,
+      "guest_revenue_share": 0.12969164491273966,
+      "mom_growth": -0.22292391679000978,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 691587.436,
+      "seasonality_index": 0.7851984310652257
+    },
+    {
+      "month": "2010-02-01",
+      "sales_revenue": 537909.676,
+      "returns_value": -12575.44,
+      "net_revenue": 525334.236,
+      "net_revenue_identified": 485910.026,
+      "net_revenue_guest": 39424.21,
+      "orders": 1189,
+      "orders_identified": 1093,
+      "units_sold": 381626,
+      "active_customers": 771,
+      "new_customers": 375,
+      "returning_customers": 396,
+      "orders_per_customer": 1.4176394293125811,
+      "net_revenue_per_order": 444.56544007319303,
+      "return_rate": 0.023378348747160296,
+      "guest_revenue_share": 0.07504595607585719,
+      "mom_growth": -0.13143746253338484,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 636169.7026666667,
+      "seasonality_index": 0.6819939417008176
+    },
+    {
+      "month": "2010-03-01",
+      "sales_revenue": 761705.981,
+      "returns_value": -9603.85,
+      "net_revenue": 752102.131,
+      "net_revenue_identified": 656463.021,
+      "net_revenue_guest": 95639.11,
+      "orders": 1647,
+      "orders_identified": 1509,
+      "units_sold": 525043,
+      "active_customers": 1051,
+      "new_customers": 441,
+      "returning_customers": 610,
+      "orders_per_customer": 1.4357754519505233,
+      "net_revenue_per_order": 435.0318230616302,
+      "return_rate": 0.012608342640806965,
+      "guest_revenue_share": 0.1271623973101068,
+      "mom_growth": 0.43166403302906,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 627422.7196666667,
+      "seasonality_index": 0.9763861970767781
+    },
+    {
+      "month": "2010-04-01",
+      "sales_revenue": 646340.932,
+      "returns_value": -10025.26,
+      "net_revenue": 636315.672,
+      "net_revenue_identified": 575168.782,
+      "net_revenue_guest": 61146.89,
+      "orders": 1435,
+      "orders_identified": 1315,
+      "units_sold": 366067,
+      "active_customers": 939,
+      "new_customers": 294,
+      "returning_customers": 645,
+      "orders_per_customer": 1.4004259850905219,
+      "net_revenue_per_order": 437.39070874524714,
+      "return_rate": 0.015510792375439406,
+      "guest_revenue_share": 0.0960952129433015,
+      "mom_growth": -0.15395044665815472,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 637917.3463333333,
+      "seasonality_index": 0.826071105925951
+    },
+    {
+      "month": "2010-05-01",
+      "sales_revenue": 643492.03,
+      "returns_value": -37192.89,
+      "net_revenue": 606299.14,
+      "net_revenue_identified": 555748.88,
+      "net_revenue_guest": 50550.26,
+      "orders": 1484,
+      "orders_identified": 1365,
+      "units_sold": 395438,
+      "active_customers": 965,
+      "new_customers": 255,
+      "returning_customers": 710,
+      "orders_per_customer": 1.4145077720207253,
+      "net_revenue_per_order": 407.1420366300366,
+      "return_rate": 0.05779852471521675,
+      "guest_revenue_share": 0.08337511413920198,
+      "mom_growth": -0.047172391504448186,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 664905.6476666667,
+      "seasonality_index": 0.7871033563066996
+    },
+    {
+      "month": "2010-06-01",
+      "sales_revenue": 696583.19,
+      "returns_value": -26373.46,
+      "net_revenue": 670209.73,
+      "net_revenue_identified": 602508.25,
+      "net_revenue_guest": 67701.48,
+      "orders": 1612,
+      "orders_identified": 1479,
+      "units_sold": 406238,
+      "active_customers": 1034,
+      "new_customers": 267,
+      "returning_customers": 767,
+      "orders_per_customer": 1.43036750483559,
+      "net_revenue_per_order": 407.3754225828262,
+      "return_rate": 0.03786117778696325,
+      "guest_revenue_share": 0.10101536425023253,
+      "mom_growth": 0.1054109857388219,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 637608.1806666667,
+      "seasonality_index": 0.8700726969733239
+    },
+    {
+      "month": "2010-07-01",
+      "sales_revenue": 632994.32,
+      "returns_value": -17132.73,
+      "net_revenue": 615861.59,
+      "net_revenue_identified": 564482.59,
+      "net_revenue_guest": 51379.0,
+      "orders": 1507,
+      "orders_identified": 1362,
+      "units_sold": 337556,
+      "active_customers": 924,
+      "new_customers": 185,
+      "returning_customers": 739,
+      "orders_per_customer": 1.474025974025974,
+      "net_revenue_per_order": 414.4512408223201,
+      "return_rate": 0.027066167039223987,
+      "guest_revenue_share": 0.08342621269821357,
+      "mom_growth": -0.08109124288601421,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 630790.1533333333,
+      "seasonality_index": 0.7995174205745706
+    },
+    {
+      "month": "2010-08-01",
+      "sales_revenue": 674037.72,
+      "returns_value": -12397.6,
+      "net_revenue": 661640.12,
+      "net_revenue_identified": 582257.88,
+      "net_revenue_guest": 79382.24,
+      "orders": 1402,
+      "orders_identified": 1276,
+      "units_sold": 471931,
+      "active_customers": 910,
+      "new_customers": 163,
+      "returning_customers": 747,
+      "orders_per_customer": 1.402197802197802,
+      "net_revenue_per_order": 456.31495297805645,
+      "return_rate": 0.01839303592683211,
+      "guest_revenue_share": 0.11997797231522177,
+      "mom_growth": 0.07433249733921543,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 649237.1466666666,
+      "seasonality_index": 0.8589475471120864
+    },
+    {
+      "month": "2010-09-01",
+      "sales_revenue": 869243.121,
+      "returns_value": -27686.42,
+      "net_revenue": 841556.701,
+      "net_revenue_identified": 778184.591,
+      "net_revenue_guest": 63372.11,
+      "orders": 1789,
+      "orders_identified": 1659,
+      "units_sold": 583367,
+      "active_customers": 1136,
+      "new_customers": 239,
+      "returning_customers": 897,
+      "orders_per_customer": 1.460387323943662,
+      "net_revenue_per_order": 469.0684695599759,
+      "return_rate": 0.031851181023036246,
+      "guest_revenue_share": 0.07530343460481816,
+      "mom_growth": 0.2719251380947092,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 706352.8036666666,
+      "seasonality_index": 1.0925169774766523
+    },
+    {
+      "month": "2010-10-01",
+      "sales_revenue": 1094435.98,
+      "returns_value": -25451.07,
+      "net_revenue": 1068984.91,
+      "net_revenue_identified": 986339.38,
+      "net_revenue_guest": 82645.53,
+      "orders": 2244,
+      "orders_identified": 2108,
+      "units_sold": 619511,
+      "active_customers": 1492,
+      "new_customers": 375,
+      "returning_customers": 1117,
+      "orders_per_customer": 1.4128686327077749,
+      "net_revenue_per_order": 467.90293168880453,
+      "return_rate": 0.02325496462570611,
+      "guest_revenue_share": 0.07731215775534193,
+      "mom_growth": 0.27024704185677906,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 857393.9103333333,
+      "seasonality_index": 1.387766458818027
+    },
+    {
+      "month": "2010-11-01",
+      "sales_revenue": 1429700.782,
+      "returns_value": -35098.98,
+      "net_revenue": 1394601.802,
+      "net_revenue_identified": 1121080.552,
+      "net_revenue_guest": 273521.25,
+      "orders": 2719,
+      "orders_identified": 2570,
+      "units_sold": 724265,
+      "active_customers": 1606,
+      "new_customers": 326,
+      "returning_customers": 1280,
+      "orders_per_customer": 1.6002490660024906,
+      "net_revenue_per_order": 436.218113618677,
+      "return_rate": 0.024549878157652156,
+      "guest_revenue_share": 0.19612856487618394,
+      "mom_growth": 0.3046038245759708,
+      "yoy_growth": null,
+      "net_revenue_3m_avg": 1101714.471,
+      "seasonality_index": 1.8104854297922495
+    },
+    {
+      "month": "2010-12-01",
+      "sales_revenue": 775638.36,
+      "returns_value": -17547.86,
+      "net_revenue": 758090.5,
+      "net_revenue_identified": 547893.92,
+      "net_revenue_guest": 210196.58,
+      "orders": 1550,
+      "orders_identified": 1394,
+      "units_sold": 357529,
+      "active_customers": 884,
+      "new_customers": 76,
+      "returning_customers": 808,
+      "orders_per_customer": 1.5769230769230769,
+      "net_revenue_per_order": 393.0372453371593,
+      "return_rate": 0.022623765023689648,
+      "guest_revenue_share": 0.27727109098451963,
+      "mom_growth": -0.45641078413004943,
+      "yoy_growth": -0.02602011955961625,
+      "net_revenue_3m_avg": 1073892.404,
+      "seasonality_index": 0.9841603551247393
+    },
+    {
+      "month": "2011-01-01",
+      "sales_revenue": 670380.24,
+      "returns_value": -91525.05,
+      "net_revenue": 578855.19,
+      "net_revenue_identified": 471430.34,
+      "net_revenue_guest": 107424.85,
+      "orders": 1081,
+      "orders_identified": 983,
+      "units_sold": 386738,
+      "active_customers": 739,
+      "new_customers": 72,
+      "returning_customers": 667,
+      "orders_per_customer": 1.3301759133964817,
+      "net_revenue_per_order": 479.5832553407935,
+      "return_rate": 0.13652707006996506,
+      "guest_revenue_share": 0.18558156142644244,
+      "mom_growth": -0.23642996449632336,
+      "yoy_growth": -0.04294847318475625,
+      "net_revenue_3m_avg": 910515.8306666666,
+      "seasonality_index": 0.7514753573039081
+    },
+    {
+      "month": "2011-02-01",
+      "sales_revenue": 507799.87,
+      "returns_value": -8335.52,
+      "net_revenue": 499464.35,
+      "net_revenue_identified": 434018.17,
+      "net_revenue_guest": 65446.18,
+      "orders": 1093,
+      "orders_identified": 992,
+      "units_sold": 282627,
+      "active_customers": 757,
+      "new_customers": 125,
+      "returning_customers": 632,
+      "orders_per_customer": 1.310435931307794,
+      "net_revenue_per_order": 437.51831653225804,
+      "return_rate": 0.016414970724588803,
+      "guest_revenue_share": 0.13103273536940124,
+      "mom_growth": -0.13715146961021452,
+      "yoy_growth": -0.04924462223703241,
+      "net_revenue_3m_avg": 612136.68,
+      "seasonality_index": 0.648409407673816
+    },
+    {
+      "month": "2011-03-01",
+      "sales_revenue": 689833.51,
+      "returns_value": -10504.3,
+      "net_revenue": 679329.21,
+      "net_revenue_identified": 573138.05,
+      "net_revenue_guest": 106191.16,
+      "orders": 1440,
+      "orders_identified": 1312,
+      "units_sold": 376182,
+      "active_customers": 973,
+      "new_customers": 179,
+      "returning_customers": 794,
+      "orders_per_customer": 1.3484069886947585,
+      "net_revenue_per_order": 436.84302591463415,
+      "return_rate": 0.01522729738078395,
+      "guest_revenue_share": 0.15631767107438235,
+      "mom_growth": 0.36011551174773526,
+      "yoy_growth": -0.0967593601991803,
+      "net_revenue_3m_avg": 585882.9166666666,
+      "seasonality_index": 0.8819116933403183
+    },
+    {
+      "month": "2011-04-01",
+      "sales_revenue": 515377.991,
+      "returns_value": -33316.06,
+      "net_revenue": 482061.931,
+      "net_revenue_identified": 421127.771,
+      "net_revenue_guest": 60934.16,
+      "orders": 1235,
+      "orders_identified": 1139,
+      "units_sold": 307651,
+      "active_customers": 853,
+      "new_customers": 106,
+      "returning_customers": 747,
+      "orders_per_customer": 1.3352872215709262,
+      "net_revenue_per_order": 369.73465408252855,
+      "return_rate": 0.06464393237933204,
+      "guest_revenue_share": 0.12640317785226646,
+      "mom_growth": -0.290385392084053,
+      "yoy_growth": -0.24241700745035244,
+      "net_revenue_3m_avg": 553618.497,
+      "seasonality_index": 0.6258174204861788
+    },
+    {
+      "month": "2011-05-01",
+      "sales_revenue": 739953.0,
+      "returns_value": -8948.23,
+      "net_revenue": 731004.77,
+      "net_revenue_identified": 650314.24,
+      "net_revenue_guest": 80690.53,
+      "orders": 1668,
+      "orders_identified": 1544,
+      "units_sold": 394653,
+      "active_customers": 1054,
+      "new_customers": 111,
+      "returning_customers": 943,
+      "orders_per_customer": 1.4648956356736242,
+      "net_revenue_per_order": 421.1879792746114,
+      "return_rate": 0.012092970769765106,
+      "guest_revenue_share": 0.1103830416865816,
+      "mom_growth": 0.516412566500714,
+      "yoy_growth": 0.20568333644675785,
+      "net_revenue_3m_avg": 630798.637,
+      "seasonality_index": 0.9489974007603029
+    },
+    {
+      "month": "2011-06-01",
+      "sales_revenue": 737558.98,
+      "returns_value": -13713.84,
+      "net_revenue": 723845.14,
+      "net_revenue_identified": 640629.21,
+      "net_revenue_guest": 83215.93,
+      "orders": 1525,
+      "orders_identified": 1390,
+      "units_sold": 388124,
+      "active_customers": 990,
+      "new_customers": 108,
+      "returning_customers": 882,
+      "orders_per_customer": 1.404040404040404,
+      "net_revenue_per_order": 460.88432374100717,
+      "return_rate": 0.0185935503083428,
+      "guest_revenue_share": 0.11496372000231982,
+      "mom_growth": -0.009794231575260492,
+      "yoy_growth": 0.08002779965608675,
+      "net_revenue_3m_avg": 645637.2803333333,
+      "seasonality_index": 0.9397027004529362
+    },
+    {
+      "month": "2011-07-01",
+      "sales_revenue": 688219.341,
+      "returns_value": -11407.26,
+      "net_revenue": 676812.081,
+      "net_revenue_identified": 580214.731,
+      "net_revenue_guest": 96597.35,
+      "orders": 1452,
+      "orders_identified": 1321,
+      "units_sold": 399291,
+      "active_customers": 946,
+      "new_customers": 101,
+      "returning_customers": 845,
+      "orders_per_customer": 1.3964059196617336,
+      "net_revenue_per_order": 439.2238690386071,
+      "return_rate": 0.016575035487123864,
+      "guest_revenue_share": 0.1427240333199667,
+      "mom_growth": -0.06497668686426494,
+      "yoy_growth": 0.09896783951082266,
+      "net_revenue_3m_avg": 710553.997,
+      "seasonality_index": 0.8786439323401016
+    },
+    {
+      "month": "2011-08-01",
+      "sales_revenue": 724216.5,
+      "returns_value": -22926.57,
+      "net_revenue": 701289.93,
+      "net_revenue_identified": 612605.13,
+      "net_revenue_guest": 88684.8,
+      "orders": 1339,
+      "orders_identified": 1267,
+      "units_sold": 420695,
+      "active_customers": 933,
+      "new_customers": 107,
+      "returning_customers": 826,
+      "orders_per_customer": 1.3579849946409432,
+      "net_revenue_per_order": 483.50838989739543,
+      "return_rate": 0.031657066636841334,
+      "guest_revenue_share": 0.12645953721308958,
+      "mom_growth": 0.03616638899801217,
+      "yoy_growth": 0.05992655040326156,
+      "net_revenue_3m_avg": 700649.0503333333,
+      "seasonality_index": 0.9104213105878568
+    },
+    {
+      "month": "2011-09-01",
+      "sales_revenue": 1028320.381,
+      "returns_value": -16980.64,
+      "net_revenue": 1011339.741,
+      "net_revenue_identified": 921808.741,
+      "net_revenue_guest": 89531.0,
+      "orders": 1818,
+      "orders_identified": 1739,
+      "units_sold": 568701,
+      "active_customers": 1259,
+      "new_customers": 188,
+      "returning_customers": 1071,
+      "orders_per_customer": 1.381254964257347,
+      "net_revenue_per_order": 530.0797820586545,
+      "return_rate": 0.016512985946546165,
+      "guest_revenue_share": 0.08852712532731372,
+      "mom_growth": 0.4421135934462941,
+      "yoy_growth": 0.20174878270026397,
+      "net_revenue_3m_avg": 796480.584,
+      "seasonality_index": 1.3129309477619386
+    },
+    {
+      "month": "2011-10-01",
+      "sales_revenue": 1103314.25,
+      "returns_value": -41613.03,
+      "net_revenue": 1061701.22,
+      "net_revenue_identified": 961042.49,
+      "net_revenue_guest": 100658.73,
+      "orders": 2005,
+      "orders_identified": 1903,
+      "units_sold": 619597,
+      "active_customers": 1361,
+      "new_customers": 221,
+      "returning_customers": 1140,
+      "orders_per_customer": 1.3982365907421015,
+      "net_revenue_per_order": 505.01444561219125,
+      "return_rate": 0.037716389505528455,
+      "guest_revenue_share": 0.09480890490075917,
+      "mom_growth": 0.049796796228142926,
+      "yoy_growth": -0.006813650905511781,
+      "net_revenue_3m_avg": 924776.9636666666,
+      "seasonality_index": 1.3783107026292625
+    },
+    {
+      "month": "2011-11-01",
+      "sales_revenue": 1452115.98,
+      "returns_value": -24991.44,
+      "net_revenue": 1427124.54,
+      "net_revenue_identified": 1113102.12,
+      "net_revenue_guest": 314022.42,
+      "orders": 2751,
+      "orders_identified": 2642,
+      "units_sold": 746952,
+      "active_customers": 1660,
+      "new_customers": 191,
+      "returning_customers": 1469,
+      "orders_per_customer": 1.591566265060241,
+      "net_revenue_per_order": 421.3104163512491,
+      "return_rate": 0.01721036084183854,
+      "guest_revenue_share": 0.22003855388822616,
+      "mom_growth": 0.3441865876352672,
+      "yoy_growth": 0.023320447423314183,
+      "net_revenue_3m_avg": 1166721.8336666666,
+      "seasonality_index": 1.852706760068396
+    }
+  ],
+  "yoy": [
+    {
+      "sort_order": 1,
+      "driver": "Active customers",
+      "year1_value": 4239.0,
+      "year2_value": 4293.0,
+      "revenue_effect": 101392.92832290205
+    },
+    {
+      "sort_order": 2,
+      "driver": "Orders per customer",
+      "year1_value": 4.291578202406228,
+      "year2_value": 4.105753552294432,
+      "revenue_effect": -354561.7415071769
+    },
+    {
+      "sort_order": 3,
+      "driver": "Net revenue per order",
+      "year1_value": 444.872239116095,
+      "year2_value": 449.7517821967548,
+      "revenue_effect": 87377.95218427415
+    },
+    {
+      "sort_order": 4,
+      "driver": "Total change in identified net revenue",
+      "year1_value": 8093115.774,
+      "year2_value": 7927324.913,
+      "revenue_effect": -165790.861
+    }
+  ],
+  "countries": [
+    {
+      "country": "United Kingdom",
+      "net_revenue": 15770559.406,
+      "net_revenue_year1": 7887515.583,
+      "net_revenue_year2": 7883043.823,
+      "orders": 35440,
+      "customers": 5313,
+      "avg_order_value": 457.94974762979683,
+      "revenue_share": 0.8530621424005862,
+      "yoy_growth": -0.0005669415106624998,
+      "revenue_rank": 1
+    },
+    {
+      "country": "EIRE",
+      "net_revenue": 595993.57,
+      "net_revenue_year1": 343736.59,
+      "net_revenue_year2": 252256.98,
+      "orders": 571,
+      "customers": 3,
+      "avg_order_value": 1079.2876882661997,
+      "revenue_share": 0.03223852360543042,
+      "yoy_growth": -0.26613288390392187,
+      "revenue_rank": 2
+    },
+    {
+      "country": "Netherlands",
+      "net_revenue": 534367.41,
+      "net_revenue_year1": 262615.89,
+      "net_revenue_year2": 271751.52,
+      "orders": 213,
+      "customers": 22,
+      "avg_order_value": 2526.034694835681,
+      "revenue_share": 0.028905037282965514,
+      "yoy_growth": 0.03478704201790683,
+      "revenue_rank": 3
+    },
+    {
+      "country": "Germany",
+      "net_revenue": 368517.341,
+      "net_revenue_year1": 173953.851,
+      "net_revenue_year2": 194563.49,
+      "orders": 737,
+      "customers": 106,
+      "avg_order_value": 511.6130407055631,
+      "revenue_share": 0.01993386438185726,
+      "yoy_growth": 0.11847762427518771,
+      "revenue_rank": 4
+    },
+    {
+      "country": "France",
+      "net_revenue": 285575.25,
+      "net_revenue_year1": 111354.6,
+      "net_revenue_year2": 174220.65,
+      "orders": 577,
+      "customers": 90,
+      "avg_order_value": 525.2535355285961,
+      "revenue_share": 0.015447355309977075,
+      "yoy_growth": 0.5645572791784084,
+      "revenue_rank": 5
+    },
+    {
+      "country": "Australia",
+      "net_revenue": 160610.62,
+      "net_revenue_year1": 28766.87,
+      "net_revenue_year2": 131843.75,
+      "orders": 74,
+      "customers": 14,
+      "avg_order_value": 2189.0529729729733,
+      "revenue_share": 0.008687760279280891,
+      "yoy_growth": 3.583180234763115,
+      "revenue_rank": 6
+    },
+    {
+      "country": "Switzerland",
+      "net_revenue": 91224.71,
+      "net_revenue_year1": 38842.67,
+      "net_revenue_year2": 52382.04,
+      "orders": 81,
+      "customers": 21,
+      "avg_order_value": 1142.315925925926,
+      "revenue_share": 0.004934533046612474,
+      "yoy_growth": 0.34856949844076124,
+      "revenue_rank": 7
+    },
+    {
+      "country": "Sweden",
+      "net_revenue": 84345.17,
+      "net_revenue_year1": 49178.76,
+      "net_revenue_year2": 35166.41,
+      "orders": 98,
+      "customers": 19,
+      "avg_order_value": 878.3789795918367,
+      "revenue_share": 0.004562404513943064,
+      "yoy_growth": -0.284926866801847,
+      "revenue_rank": 8
+    },
+    {
+      "country": "Spain",
+      "net_revenue": 84061.96,
+      "net_revenue_year1": 32890.85,
+      "net_revenue_year2": 51171.11,
+      "orders": 139,
+      "customers": 35,
+      "avg_order_value": 697.7145323741007,
+      "revenue_share": 0.004547085099892517,
+      "yoy_growth": 0.5557855756236159,
+      "revenue_rank": 9
+    },
+    {
+      "country": "Denmark",
+      "net_revenue": 68288.31,
+      "net_revenue_year1": 45717.73,
+      "net_revenue_year2": 22570.58,
+      "orders": 53,
+      "customers": 10,
+      "avg_order_value": 1365.3888679245283,
+      "revenue_share": 0.003693855780876881,
+      "yoy_growth": -0.5063057592754496,
+      "revenue_rank": 10
+    }
+  ],
+  "products": [
+    {
+      "stock_code": "22423",
+      "description": "REGENCY CAKESTAND 3 TIER",
+      "net_revenue": 308154.85,
+      "sales_revenue": 324596.2,
+      "returns_value": -16441.35,
+      "units_sold": 26029,
+      "orders_with_product": 3859,
+      "return_rate": 0.05065170202238966,
+      "revenue_rank": 1,
+      "cumulative_revenue_share": 0.016668732526515125
+    },
+    {
+      "stock_code": "85123A",
+      "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "net_revenue": 249399.05,
+      "sales_revenue": 258783.2,
+      "returns_value": -9384.15,
+      "units_sold": 93880,
+      "orders_with_product": 5394,
+      "return_rate": 0.03626259355321365,
+      "revenue_rank": 2,
+      "cumulative_revenue_share": 0.030159242433521208
+    },
+    {
+      "stock_code": "85099B",
+      "description": "JUMBO BAG RED RETROSPOT",
+      "net_revenue": 178316.46,
+      "sales_revenue": 180454.08,
+      "returns_value": -2137.62,
+      "units_sold": 96071,
+      "orders_with_product": 3960,
+      "return_rate": 0.01184578370297862,
+      "revenue_rank": 3,
+      "cumulative_revenue_share": 0.039804748181086216
+    },
+    {
+      "stock_code": "47566",
+      "description": "PARTY BUNTING",
+      "net_revenue": 146161.25,
+      "sales_revenue": 147399.8,
+      "returns_value": -1238.55,
+      "units_sold": 28064,
+      "orders_with_product": 2646,
+      "return_rate": 0.008402657262764264,
+      "revenue_rank": 4,
+      "cumulative_revenue_share": 0.04771091218269485
+    },
+    {
+      "stock_code": "84879",
+      "description": "ASSORTED COLOUR BIRD ORNAMENT",
+      "net_revenue": 126387.68,
+      "sales_revenue": 127161.75,
+      "returns_value": -774.07,
+      "units_sold": 78752,
+      "orders_with_product": 2760,
+      "return_rate": 0.006087286467825428,
+      "revenue_rank": 5,
+      "cumulative_revenue_share": 0.05454748292810673
+    },
+    {
+      "stock_code": "22086",
+      "description": "PAPER CHAIN KIT 50'S CHRISTMAS",
+      "net_revenue": 109430.83,
+      "sales_revenue": 110892.53,
+      "returns_value": -1461.7,
+      "units_sold": 32996,
+      "orders_with_product": 1902,
+      "return_rate": 0.013181230512100319,
+      "revenue_rank": 6,
+      "cumulative_revenue_share": 0.06046682262185015
+    },
+    {
+      "stock_code": "79321",
+      "description": "CHILLI LIGHTS",
+      "net_revenue": 77271.14,
+      "sales_revenue": 77901.14,
+      "returns_value": -630.0,
+      "units_sold": 15379,
+      "orders_with_product": 1104,
+      "return_rate": 0.008087173050355874,
+      "revenue_rank": 7,
+      "cumulative_revenue_share": 0.0646465782371809
+    },
+    {
+      "stock_code": "22386",
+      "description": "JUMBO BAG PINK POLKADOT",
+      "net_revenue": 74531.32,
+      "sales_revenue": 75398.3,
+      "returns_value": -866.98,
+      "units_sold": 38978,
+      "orders_with_product": 2223,
+      "return_rate": 0.011498667741845638,
+      "revenue_rank": 8,
+      "cumulative_revenue_share": 0.06867813132786925
+    },
+    {
+      "stock_code": "22197",
+      "description": "SMALL POPCORN HOLDER",
+      "net_revenue": 73493.76,
+      "sales_revenue": 74096.4,
+      "returns_value": -602.64,
+      "units_sold": 82282,
+      "orders_with_product": 2258,
+      "return_rate": 0.0081331886569388,
+      "revenue_rank": 9,
+      "cumulative_revenue_share": 0.07265356065441692
+    },
+    {
+      "stock_code": "20725",
+      "description": "LUNCH BAG RED RETROSPOT",
+      "net_revenue": 68946.19,
+      "sales_revenue": 70329.94,
+      "returns_value": -1383.75,
+      "units_sold": 39920,
+      "orders_with_product": 3012,
+      "return_rate": 0.019675119870712247,
+      "revenue_rank": 10,
+      "cumulative_revenue_share": 0.07638300252376375
+    }
+  ],
+  "high_return_products": [
+    {
+      "stock_code": "23166",
+      "description": "MEDIUM CERAMIC TOP STORAGE JAR",
+      "sales_revenue": 81448.21,
+      "returns_value": -77479.64,
+      "return_rate": 0.9512749267295131
+    },
+    {
+      "stock_code": "21108",
+      "description": "FAIRY CAKE FLANNEL ASSORTED COLOUR",
+      "sales_revenue": 25186.85,
+      "returns_value": -6576.57,
+      "return_rate": 0.2611112544839867
+    },
+    {
+      "stock_code": "71477",
+      "description": "COLOUR GLASS. STAR T-LIGHT HOLDER",
+      "sales_revenue": 43052.51,
+      "returns_value": -7057.47,
+      "return_rate": 0.1639270277156895
+    },
+    {
+      "stock_code": "47566B",
+      "description": "TEA TIME PARTY BUNTING",
+      "sales_revenue": 27559.8,
+      "returns_value": -4490.5,
+      "return_rate": 0.16293659605657515
+    },
+    {
+      "stock_code": "84078A",
+      "description": "SET/4 WHITE RETRO STORAGE CUBES",
+      "sales_revenue": 43666.82,
+      "returns_value": -5187.65,
+      "return_rate": 0.11880072787530668
+    }
+  ],
+  "retention_curve": [
+    {
+      "month_offset": 0,
+      "cohorts_observed": 23,
+      "customers": 4873,
+      "active_customers": 4873,
+      "retention_rate": 1.0
+    },
+    {
+      "month_offset": 1,
+      "cohorts_observed": 22,
+      "customers": 4682,
+      "active_customers": 982,
+      "retention_rate": 0.20973942759504485
+    },
+    {
+      "month_offset": 2,
+      "cohorts_observed": 21,
+      "customers": 4461,
+      "active_customers": 960,
+      "retention_rate": 0.21519838601210492
+    },
+    {
+      "month_offset": 3,
+      "cohorts_observed": 20,
+      "customers": 4273,
+      "active_customers": 901,
+      "retention_rate": 0.21085888134799907
+    },
+    {
+      "month_offset": 4,
+      "cohorts_observed": 19,
+      "customers": 4166,
+      "active_customers": 807,
+      "retention_rate": 0.19371099375900144
+    },
+    {
+      "month_offset": 5,
+      "cohorts_observed": 18,
+      "customers": 4065,
+      "active_customers": 755,
+      "retention_rate": 0.1857318573185732
+    },
+    {
+      "month_offset": 6,
+      "cohorts_observed": 17,
+      "customers": 3957,
+      "active_customers": 730,
+      "retention_rate": 0.1844831943391458
+    },
+    {
+      "month_offset": 7,
+      "cohorts_observed": 16,
+      "customers": 3846,
+      "active_customers": 717,
+      "retention_rate": 0.18642745709828393
+    },
+    {
+      "month_offset": 8,
+      "cohorts_observed": 15,
+      "customers": 3740,
+      "active_customers": 613,
+      "retention_rate": 0.16390374331550803
+    },
+    {
+      "month_offset": 9,
+      "cohorts_observed": 14,
+      "customers": 3561,
+      "active_customers": 533,
+      "retention_rate": 0.14967705700645886
+    },
+    {
+      "month_offset": 10,
+      "cohorts_observed": 13,
+      "customers": 3436,
+      "active_customers": 463,
+      "retention_rate": 0.13474970896391153
+    },
+    {
+      "month_offset": 11,
+      "cohorts_observed": 12,
+      "customers": 3364,
+      "active_customers": 470,
+      "retention_rate": 0.13971462544589774
+    },
+    {
+      "month_offset": 12,
+      "cohorts_observed": 11,
+      "customers": 3288,
+      "active_customers": 606,
+      "retention_rate": 0.1843065693430657
+    },
+    {
+      "month_offset": 13,
+      "cohorts_observed": 10,
+      "customers": 2962,
+      "active_customers": 502,
+      "retention_rate": 0.16948008102633355
+    },
+    {
+      "month_offset": 14,
+      "cohorts_observed": 9,
+      "customers": 2587,
+      "active_customers": 411,
+      "retention_rate": 0.15887127947429455
+    },
+    {
+      "month_offset": 15,
+      "cohorts_observed": 8,
+      "customers": 2348,
+      "active_customers": 381,
+      "retention_rate": 0.16226575809199317
+    },
+    {
+      "month_offset": 16,
+      "cohorts_observed": 7,
+      "customers": 2185,
+      "active_customers": 382,
+      "retention_rate": 0.1748283752860412
+    },
+    {
+      "month_offset": 17,
+      "cohorts_observed": 6,
+      "customers": 2000,
+      "active_customers": 345,
+      "retention_rate": 0.1725
+    },
+    {
+      "month_offset": 18,
+      "cohorts_observed": 5,
+      "customers": 1733,
+      "active_customers": 295,
+      "retention_rate": 0.1702250432775534
+    },
+    {
+      "month_offset": 19,
+      "cohorts_observed": 4,
+      "customers": 1478,
+      "active_customers": 317,
+      "retention_rate": 0.2144790257104195
+    },
+    {
+      "month_offset": 20,
+      "cohorts_observed": 3,
+      "customers": 1184,
+      "active_customers": 273,
+      "retention_rate": 0.23057432432432431
+    },
+    {
+      "month_offset": 21,
+      "cohorts_observed": 2,
+      "customers": 743,
+      "active_customers": 135,
+      "retention_rate": 0.1816958277254374
+    },
+    {
+      "month_offset": 22,
+      "cohorts_observed": 1,
+      "customers": 368,
+      "active_customers": 93,
+      "retention_rate": 0.25271739130434784
+    }
+  ],
+  "cohort_grid": [
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 0,
+      "cohort_size": 951,
+      "active_customers": 951
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 1,
+      "cohort_size": 951,
+      "active_customers": 333
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 2,
+      "cohort_size": 951,
+      "active_customers": 317
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 3,
+      "cohort_size": 951,
+      "active_customers": 404
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 4,
+      "cohort_size": 951,
+      "active_customers": 360
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 5,
+      "cohort_size": 951,
+      "active_customers": 342
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 6,
+      "cohort_size": 951,
+      "active_customers": 358
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 7,
+      "cohort_size": 951,
+      "active_customers": 327
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 8,
+      "cohort_size": 951,
+      "active_customers": 321
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 9,
+      "cohort_size": 951,
+      "active_customers": 344
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 10,
+      "cohort_size": 951,
+      "active_customers": 401
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 11,
+      "cohort_size": 951,
+      "active_customers": 472
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 12,
+      "cohort_size": 951,
+      "active_customers": 358
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 13,
+      "cohort_size": 951,
+      "active_customers": 268
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 14,
+      "cohort_size": 951,
+      "active_customers": 232
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 15,
+      "cohort_size": 951,
+      "active_customers": 288
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 16,
+      "cohort_size": 951,
+      "active_customers": 250
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 17,
+      "cohort_size": 951,
+      "active_customers": 288
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 18,
+      "cohort_size": 951,
+      "active_customers": 270
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 19,
+      "cohort_size": 951,
+      "active_customers": 246
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 20,
+      "cohort_size": 951,
+      "active_customers": 242
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 21,
+      "cohort_size": 951,
+      "active_customers": 298
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 22,
+      "cohort_size": 951,
+      "active_customers": 289
+    },
+    {
+      "cohort_month": "2009-12-01",
+      "month_offset": 23,
+      "cohort_size": 951,
+      "active_customers": 386
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 0,
+      "cohort_size": 368,
+      "active_customers": 368
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 1,
+      "cohort_size": 368,
+      "active_customers": 79
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 2,
+      "cohort_size": 368,
+      "active_customers": 118
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 3,
+      "cohort_size": 368,
+      "active_customers": 116
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 4,
+      "cohort_size": 368,
+      "active_customers": 100
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 5,
+      "cohort_size": 368,
+      "active_customers": 114
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 6,
+      "cohort_size": 368,
+      "active_customers": 99
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 7,
+      "cohort_size": 368,
+      "active_customers": 86
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 8,
+      "cohort_size": 368,
+      "active_customers": 105
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 9,
+      "cohort_size": 368,
+      "active_customers": 120
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 10,
+      "cohort_size": 368,
+      "active_customers": 114
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 11,
+      "cohort_size": 368,
+      "active_customers": 66
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 12,
+      "cohort_size": 368,
+      "active_customers": 84
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 13,
+      "cohort_size": 368,
+      "active_customers": 66
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 14,
+      "cohort_size": 368,
+      "active_customers": 72
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 15,
+      "cohort_size": 368,
+      "active_customers": 56
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 16,
+      "cohort_size": 368,
+      "active_customers": 90
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 17,
+      "cohort_size": 368,
+      "active_customers": 75
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 18,
+      "cohort_size": 368,
+      "active_customers": 71
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 19,
+      "cohort_size": 368,
+      "active_customers": 74
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 20,
+      "cohort_size": 368,
+      "active_customers": 93
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 21,
+      "cohort_size": 368,
+      "active_customers": 73
+    },
+    {
+      "cohort_month": "2010-01-01",
+      "month_offset": 22,
+      "cohort_size": 368,
+      "active_customers": 93
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 0,
+      "cohort_size": 375,
+      "active_customers": 375
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 1,
+      "cohort_size": 375,
+      "active_customers": 88
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 2,
+      "cohort_size": 375,
+      "active_customers": 85
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 3,
+      "cohort_size": 375,
+      "active_customers": 110
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 4,
+      "cohort_size": 375,
+      "active_customers": 92
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 5,
+      "cohort_size": 375,
+      "active_customers": 74
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 6,
+      "cohort_size": 375,
+      "active_customers": 72
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 7,
+      "cohort_size": 375,
+      "active_customers": 108
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 8,
+      "cohort_size": 375,
+      "active_customers": 96
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 9,
+      "cohort_size": 375,
+      "active_customers": 104
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 10,
+      "cohort_size": 375,
+      "active_customers": 43
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 11,
+      "cohort_size": 375,
+      "active_customers": 47
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 12,
+      "cohort_size": 375,
+      "active_customers": 57
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 13,
+      "cohort_size": 375,
+      "active_customers": 66
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 14,
+      "cohort_size": 375,
+      "active_customers": 46
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 15,
+      "cohort_size": 375,
+      "active_customers": 75
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 16,
+      "cohort_size": 375,
+      "active_customers": 60
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 17,
+      "cohort_size": 375,
+      "active_customers": 61
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 18,
+      "cohort_size": 375,
+      "active_customers": 54
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 19,
+      "cohort_size": 375,
+      "active_customers": 86
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 20,
+      "cohort_size": 375,
+      "active_customers": 86
+    },
+    {
+      "cohort_month": "2010-02-01",
+      "month_offset": 21,
+      "cohort_size": 375,
+      "active_customers": 62
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 0,
+      "cohort_size": 441,
+      "active_customers": 441
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 1,
+      "cohort_size": 441,
+      "active_customers": 84
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 2,
+      "cohort_size": 441,
+      "active_customers": 102
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 3,
+      "cohort_size": 441,
+      "active_customers": 107
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 4,
+      "cohort_size": 441,
+      "active_customers": 102
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 5,
+      "cohort_size": 441,
+      "active_customers": 90
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 6,
+      "cohort_size": 441,
+      "active_customers": 109
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 7,
+      "cohort_size": 441,
+      "active_customers": 135
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 8,
+      "cohort_size": 441,
+      "active_customers": 122
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 9,
+      "cohort_size": 441,
+      "active_customers": 48
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 10,
+      "cohort_size": 441,
+      "active_customers": 51
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 11,
+      "cohort_size": 441,
+      "active_customers": 64
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 12,
+      "cohort_size": 441,
+      "active_customers": 88
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 13,
+      "cohort_size": 441,
+      "active_customers": 72
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 14,
+      "cohort_size": 441,
+      "active_customers": 88
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 15,
+      "cohort_size": 441,
+      "active_customers": 75
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 16,
+      "cohort_size": 441,
+      "active_customers": 77
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 17,
+      "cohort_size": 441,
+      "active_customers": 69
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 18,
+      "cohort_size": 441,
+      "active_customers": 78
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 19,
+      "cohort_size": 441,
+      "active_customers": 90
+    },
+    {
+      "cohort_month": "2010-03-01",
+      "month_offset": 20,
+      "cohort_size": 441,
+      "active_customers": 94
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 0,
+      "cohort_size": 294,
+      "active_customers": 294
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 1,
+      "cohort_size": 294,
+      "active_customers": 56
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 2,
+      "cohort_size": 294,
+      "active_customers": 56
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 3,
+      "cohort_size": 294,
+      "active_customers": 47
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 4,
+      "cohort_size": 294,
+      "active_customers": 54
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 5,
+      "cohort_size": 294,
+      "active_customers": 65
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 6,
+      "cohort_size": 294,
+      "active_customers": 81
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 7,
+      "cohort_size": 294,
+      "active_customers": 78
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 8,
+      "cohort_size": 294,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 9,
+      "cohort_size": 294,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 10,
+      "cohort_size": 294,
+      "active_customers": 22
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 11,
+      "cohort_size": 294,
+      "active_customers": 41
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 12,
+      "cohort_size": 294,
+      "active_customers": 42
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 13,
+      "cohort_size": 294,
+      "active_customers": 46
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 14,
+      "cohort_size": 294,
+      "active_customers": 46
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 15,
+      "cohort_size": 294,
+      "active_customers": 46
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 16,
+      "cohort_size": 294,
+      "active_customers": 41
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 17,
+      "cohort_size": 294,
+      "active_customers": 44
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 18,
+      "cohort_size": 294,
+      "active_customers": 53
+    },
+    {
+      "cohort_month": "2010-04-01",
+      "month_offset": 19,
+      "cohort_size": 294,
+      "active_customers": 67
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 0,
+      "cohort_size": 255,
+      "active_customers": 255
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 1,
+      "cohort_size": 255,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 2,
+      "cohort_size": 255,
+      "active_customers": 43
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 3,
+      "cohort_size": 255,
+      "active_customers": 45
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 4,
+      "cohort_size": 255,
+      "active_customers": 45
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 5,
+      "cohort_size": 255,
+      "active_customers": 65
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 6,
+      "cohort_size": 255,
+      "active_customers": 54
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 7,
+      "cohort_size": 255,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 8,
+      "cohort_size": 255,
+      "active_customers": 15
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 9,
+      "cohort_size": 255,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 10,
+      "cohort_size": 255,
+      "active_customers": 29
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 11,
+      "cohort_size": 255,
+      "active_customers": 34
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 12,
+      "cohort_size": 255,
+      "active_customers": 39
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 13,
+      "cohort_size": 255,
+      "active_customers": 39
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 14,
+      "cohort_size": 255,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 15,
+      "cohort_size": 255,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 16,
+      "cohort_size": 255,
+      "active_customers": 35
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 17,
+      "cohort_size": 255,
+      "active_customers": 42
+    },
+    {
+      "cohort_month": "2010-05-01",
+      "month_offset": 18,
+      "cohort_size": 255,
+      "active_customers": 39
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 0,
+      "cohort_size": 267,
+      "active_customers": 267
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 1,
+      "cohort_size": 267,
+      "active_customers": 47
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 2,
+      "cohort_size": 267,
+      "active_customers": 50
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 3,
+      "cohort_size": 267,
+      "active_customers": 55
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 4,
+      "cohort_size": 267,
+      "active_customers": 62
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 5,
+      "cohort_size": 267,
+      "active_customers": 76
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 6,
+      "cohort_size": 267,
+      "active_customers": 34
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 7,
+      "cohort_size": 267,
+      "active_customers": 24
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 8,
+      "cohort_size": 267,
+      "active_customers": 22
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 9,
+      "cohort_size": 267,
+      "active_customers": 30
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 10,
+      "cohort_size": 267,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 11,
+      "cohort_size": 267,
+      "active_customers": 37
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 12,
+      "cohort_size": 267,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 13,
+      "cohort_size": 267,
+      "active_customers": 33
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 14,
+      "cohort_size": 267,
+      "active_customers": 30
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 15,
+      "cohort_size": 267,
+      "active_customers": 33
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 16,
+      "cohort_size": 267,
+      "active_customers": 35
+    },
+    {
+      "cohort_month": "2010-06-01",
+      "month_offset": 17,
+      "cohort_size": 267,
+      "active_customers": 54
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 0,
+      "cohort_size": 185,
+      "active_customers": 185
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 1,
+      "cohort_size": 185,
+      "active_customers": 29
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 2,
+      "cohort_size": 185,
+      "active_customers": 34
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 3,
+      "cohort_size": 185,
+      "active_customers": 55
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 4,
+      "cohort_size": 185,
+      "active_customers": 54
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 5,
+      "cohort_size": 185,
+      "active_customers": 26
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 6,
+      "cohort_size": 185,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 7,
+      "cohort_size": 185,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 8,
+      "cohort_size": 185,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 9,
+      "cohort_size": 185,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 10,
+      "cohort_size": 185,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 11,
+      "cohort_size": 185,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 12,
+      "cohort_size": 185,
+      "active_customers": 24
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 13,
+      "cohort_size": 185,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 14,
+      "cohort_size": 185,
+      "active_customers": 36
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 15,
+      "cohort_size": 185,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2010-07-01",
+      "month_offset": 16,
+      "cohort_size": 185,
+      "active_customers": 44
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 0,
+      "cohort_size": 163,
+      "active_customers": 163
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 1,
+      "cohort_size": 163,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 2,
+      "cohort_size": 163,
+      "active_customers": 47
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 3,
+      "cohort_size": 163,
+      "active_customers": 53
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 4,
+      "cohort_size": 163,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 5,
+      "cohort_size": 163,
+      "active_customers": 19
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 6,
+      "cohort_size": 163,
+      "active_customers": 16
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 7,
+      "cohort_size": 163,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 8,
+      "cohort_size": 163,
+      "active_customers": 22
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 9,
+      "cohort_size": 163,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 10,
+      "cohort_size": 163,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 11,
+      "cohort_size": 163,
+      "active_customers": 19
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 12,
+      "cohort_size": 163,
+      "active_customers": 24
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 13,
+      "cohort_size": 163,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 14,
+      "cohort_size": 163,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2010-08-01",
+      "month_offset": 15,
+      "cohort_size": 163,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 0,
+      "cohort_size": 239,
+      "active_customers": 239
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 1,
+      "cohort_size": 239,
+      "active_customers": 55
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 2,
+      "cohort_size": 239,
+      "active_customers": 56
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 3,
+      "cohort_size": 239,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 4,
+      "cohort_size": 239,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 5,
+      "cohort_size": 239,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 6,
+      "cohort_size": 239,
+      "active_customers": 33
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 7,
+      "cohort_size": 239,
+      "active_customers": 23
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 8,
+      "cohort_size": 239,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 9,
+      "cohort_size": 239,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 10,
+      "cohort_size": 239,
+      "active_customers": 29
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 11,
+      "cohort_size": 239,
+      "active_customers": 24
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 12,
+      "cohort_size": 239,
+      "active_customers": 54
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 13,
+      "cohort_size": 239,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2010-09-01",
+      "month_offset": 14,
+      "cohort_size": 239,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 0,
+      "cohort_size": 375,
+      "active_customers": 375
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 1,
+      "cohort_size": 375,
+      "active_customers": 97
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 2,
+      "cohort_size": 375,
+      "active_customers": 55
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 3,
+      "cohort_size": 375,
+      "active_customers": 47
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 4,
+      "cohort_size": 375,
+      "active_customers": 33
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 5,
+      "cohort_size": 375,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 6,
+      "cohort_size": 375,
+      "active_customers": 49
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 7,
+      "cohort_size": 375,
+      "active_customers": 52
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 8,
+      "cohort_size": 375,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 9,
+      "cohort_size": 375,
+      "active_customers": 35
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 10,
+      "cohort_size": 375,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 11,
+      "cohort_size": 375,
+      "active_customers": 48
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 12,
+      "cohort_size": 375,
+      "active_customers": 72
+    },
+    {
+      "cohort_month": "2010-10-01",
+      "month_offset": 13,
+      "cohort_size": 375,
+      "active_customers": 87
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 0,
+      "cohort_size": 326,
+      "active_customers": 326
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 1,
+      "cohort_size": 326,
+      "active_customers": 57
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 2,
+      "cohort_size": 326,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 3,
+      "cohort_size": 326,
+      "active_customers": 31
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 4,
+      "cohort_size": 326,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 5,
+      "cohort_size": 326,
+      "active_customers": 29
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 6,
+      "cohort_size": 326,
+      "active_customers": 42
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 7,
+      "cohort_size": 326,
+      "active_customers": 33
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 8,
+      "cohort_size": 326,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 9,
+      "cohort_size": 326,
+      "active_customers": 30
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 10,
+      "cohort_size": 326,
+      "active_customers": 36
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 11,
+      "cohort_size": 326,
+      "active_customers": 48
+    },
+    {
+      "cohort_month": "2010-11-01",
+      "month_offset": 12,
+      "cohort_size": 326,
+      "active_customers": 82
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 0,
+      "cohort_size": 76,
+      "active_customers": 76
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 1,
+      "cohort_size": 76,
+      "active_customers": 7
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 2,
+      "cohort_size": 76,
+      "active_customers": 4
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 3,
+      "cohort_size": 76,
+      "active_customers": 7
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 4,
+      "cohort_size": 76,
+      "active_customers": 9
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 5,
+      "cohort_size": 76,
+      "active_customers": 5
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 6,
+      "cohort_size": 76,
+      "active_customers": 4
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 7,
+      "cohort_size": 76,
+      "active_customers": 7
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 8,
+      "cohort_size": 76,
+      "active_customers": 4
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 9,
+      "cohort_size": 76,
+      "active_customers": 2
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 10,
+      "cohort_size": 76,
+      "active_customers": 7
+    },
+    {
+      "cohort_month": "2010-12-01",
+      "month_offset": 11,
+      "cohort_size": 76,
+      "active_customers": 15
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 0,
+      "cohort_size": 72,
+      "active_customers": 72
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 1,
+      "cohort_size": 72,
+      "active_customers": 12
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 2,
+      "cohort_size": 72,
+      "active_customers": 16
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 3,
+      "cohort_size": 72,
+      "active_customers": 14
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 4,
+      "cohort_size": 72,
+      "active_customers": 16
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 5,
+      "cohort_size": 72,
+      "active_customers": 11
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 6,
+      "cohort_size": 72,
+      "active_customers": 11
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 7,
+      "cohort_size": 72,
+      "active_customers": 9
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 8,
+      "cohort_size": 72,
+      "active_customers": 8
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 9,
+      "cohort_size": 72,
+      "active_customers": 15
+    },
+    {
+      "cohort_month": "2011-01-01",
+      "month_offset": 10,
+      "cohort_size": 72,
+      "active_customers": 18
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 0,
+      "cohort_size": 125,
+      "active_customers": 125
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 1,
+      "cohort_size": 125,
+      "active_customers": 20
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 2,
+      "cohort_size": 125,
+      "active_customers": 20
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 3,
+      "cohort_size": 125,
+      "active_customers": 23
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 4,
+      "cohort_size": 125,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 5,
+      "cohort_size": 125,
+      "active_customers": 20
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 6,
+      "cohort_size": 125,
+      "active_customers": 20
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 7,
+      "cohort_size": 125,
+      "active_customers": 19
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 8,
+      "cohort_size": 125,
+      "active_customers": 19
+    },
+    {
+      "cohort_month": "2011-02-01",
+      "month_offset": 9,
+      "cohort_size": 125,
+      "active_customers": 23
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 0,
+      "cohort_size": 179,
+      "active_customers": 179
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 1,
+      "cohort_size": 179,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 2,
+      "cohort_size": 179,
+      "active_customers": 39
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 3,
+      "cohort_size": 179,
+      "active_customers": 36
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 4,
+      "cohort_size": 179,
+      "active_customers": 40
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 5,
+      "cohort_size": 179,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 6,
+      "cohort_size": 179,
+      "active_customers": 37
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 7,
+      "cohort_size": 179,
+      "active_customers": 36
+    },
+    {
+      "cohort_month": "2011-03-01",
+      "month_offset": 8,
+      "cohort_size": 179,
+      "active_customers": 43
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 0,
+      "cohort_size": 106,
+      "active_customers": 106
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 1,
+      "cohort_size": 106,
+      "active_customers": 26
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 2,
+      "cohort_size": 106,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 3,
+      "cohort_size": 106,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 4,
+      "cohort_size": 106,
+      "active_customers": 19
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 5,
+      "cohort_size": 106,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 6,
+      "cohort_size": 106,
+      "active_customers": 19
+    },
+    {
+      "cohort_month": "2011-04-01",
+      "month_offset": 7,
+      "cohort_size": 106,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 0,
+      "cohort_size": 111,
+      "active_customers": 111
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 1,
+      "cohort_size": 111,
+      "active_customers": 26
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 2,
+      "cohort_size": 111,
+      "active_customers": 27
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 3,
+      "cohort_size": 111,
+      "active_customers": 18
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 4,
+      "cohort_size": 111,
+      "active_customers": 24
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 5,
+      "cohort_size": 111,
+      "active_customers": 23
+    },
+    {
+      "cohort_month": "2011-05-01",
+      "month_offset": 6,
+      "cohort_size": 111,
+      "active_customers": 29
+    },
+    {
+      "cohort_month": "2011-06-01",
+      "month_offset": 0,
+      "cohort_size": 108,
+      "active_customers": 108
+    },
+    {
+      "cohort_month": "2011-06-01",
+      "month_offset": 1,
+      "cohort_size": 108,
+      "active_customers": 25
+    },
+    {
+      "cohort_month": "2011-06-01",
+      "month_offset": 2,
+      "cohort_size": 108,
+      "active_customers": 23
+    },
+    {
+      "cohort_month": "2011-06-01",
+      "month_offset": 3,
+      "cohort_size": 108,
+      "active_customers": 29
+    },
+    {
+      "cohort_month": "2011-06-01",
+      "month_offset": 4,
+      "cohort_size": 108,
+      "active_customers": 22
+    },
+    {
+      "cohort_month": "2011-06-01",
+      "month_offset": 5,
+      "cohort_size": 108,
+      "active_customers": 30
+    },
+    {
+      "cohort_month": "2011-07-01",
+      "month_offset": 0,
+      "cohort_size": 101,
+      "active_customers": 101
+    },
+    {
+      "cohort_month": "2011-07-01",
+      "month_offset": 1,
+      "cohort_size": 101,
+      "active_customers": 21
+    },
+    {
+      "cohort_month": "2011-07-01",
+      "month_offset": 2,
+      "cohort_size": 101,
+      "active_customers": 30
+    },
+    {
+      "cohort_month": "2011-07-01",
+      "month_offset": 3,
+      "cohort_size": 101,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2011-07-01",
+      "month_offset": 4,
+      "cohort_size": 101,
+      "active_customers": 35
+    },
+    {
+      "cohort_month": "2011-08-01",
+      "month_offset": 0,
+      "cohort_size": 107,
+      "active_customers": 107
+    },
+    {
+      "cohort_month": "2011-08-01",
+      "month_offset": 1,
+      "cohort_size": 107,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2011-08-01",
+      "month_offset": 2,
+      "cohort_size": 107,
+      "active_customers": 32
+    },
+    {
+      "cohort_month": "2011-08-01",
+      "month_offset": 3,
+      "cohort_size": 107,
+      "active_customers": 28
+    },
+    {
+      "cohort_month": "2011-09-01",
+      "month_offset": 0,
+      "cohort_size": 188,
+      "active_customers": 188
+    },
+    {
+      "cohort_month": "2011-09-01",
+      "month_offset": 1,
+      "cohort_size": 188,
+      "active_customers": 51
+    },
+    {
+      "cohort_month": "2011-09-01",
+      "month_offset": 2,
+      "cohort_size": 188,
+      "active_customers": 71
+    },
+    {
+      "cohort_month": "2011-10-01",
+      "month_offset": 0,
+      "cohort_size": 221,
+      "active_customers": 221
+    },
+    {
+      "cohort_month": "2011-10-01",
+      "month_offset": 1,
+      "cohort_size": 221,
+      "active_customers": 70
+    },
+    {
+      "cohort_month": "2011-11-01",
+      "month_offset": 0,
+      "cohort_size": 191,
+      "active_customers": 191
+    }
+  ],
+  "segments": [
+    {
+      "segment": "Champions",
+      "customers": 951,
+      "customer_share": 0.22152341020265548,
+      "trailing_12m_net_revenue": 5258012.181,
+      "revenue_share": 0.6629491610444643,
+      "avg_recency_days": 12.318611987381704,
+      "avg_frequency": 10.67192429022082,
+      "same_season_customers": 931,
+      "same_season_repurchasers": 619,
+      "same_season_repurchase_rate": 0.664876476906552,
+      "same_season_lapse_rate": 0.33512352309344795,
+      "repurchase_rate_min": 0.664876476906552,
+      "repurchase_rate_max": 0.8594202898550725,
+      "pooled_repurchase_rate": 0.7624784853700516,
+      "same_season_next_q_revenue_per_customer": 959.7086251342643,
+      "revenue_at_risk_next_quarter": 440520.8916412464,
+      "revenue_at_risk_pooled_rates": 312222.7542934599,
+      "repurchase_ci_low": 0.6339319778076736,
+      "repurchase_ci_high": 0.6944659026460843,
+      "lapse_ci_low": 0.3055340973539157,
+      "lapse_ci_high": 0.36606802219232637,
+      "is_targeted": true,
+      "at_risk_per_customer": 463.21860319794575,
+      "share_of_total_at_risk": 0.4869867244734906
+    },
+    {
+      "segment": "Loyal",
+      "customers": 603,
+      "customer_share": 0.14046121593291405,
+      "trailing_12m_net_revenue": 995310.26,
+      "revenue_share": 0.1254923113777297,
+      "avg_recency_days": 36.45273631840796,
+      "avg_frequency": 4.391376451077944,
+      "same_season_customers": 610,
+      "same_season_repurchasers": 266,
+      "same_season_repurchase_rate": 0.4360655737704918,
+      "same_season_lapse_rate": 0.5639344262295082,
+      "repurchase_rate_min": 0.4360655737704918,
+      "repurchase_rate_max": 0.75,
+      "pooled_repurchase_rate": 0.5367847411444142,
+      "same_season_next_q_revenue_per_customer": 300.1376557377049,
+      "revenue_at_risk_next_quarter": 140322.4300983606,
+      "revenue_at_risk_pooled_rates": 115260.72493188008,
+      "repurchase_ci_low": 0.3972336708843067,
+      "repurchase_ci_high": 0.4756977172783724,
+      "lapse_ci_low": 0.5243022827216276,
+      "lapse_ci_high": 0.6027663291156933,
+      "is_targeted": true,
+      "at_risk_per_customer": 232.70718092597116,
+      "share_of_total_at_risk": 0.15512354101791864
+    },
+    {
+      "segment": "Dormant",
+      "customers": 1346,
+      "customer_share": 0.3135336594456091,
+      "trailing_12m_net_revenue": 585479.461,
+      "revenue_share": 0.07381936445131929,
+      "avg_recency_days": 205.28454680534918,
+      "avg_frequency": 1.275631500742942,
+      "same_season_customers": 1241,
+      "same_season_repurchasers": 136,
+      "same_season_repurchase_rate": 0.1095890410958904,
+      "same_season_lapse_rate": 0.8904109589041096,
+      "repurchase_rate_min": 0.1095890410958904,
+      "repurchase_rate_max": 0.4110320284697509,
+      "pooled_repurchase_rate": 0.21256847230675593,
+      "same_season_next_q_revenue_per_customer": 43.42918614020951,
+      "revenue_at_risk_next_quarter": 130329.33207191763,
+      "revenue_at_risk_pooled_rates": 115256.24660206163,
+      "repurchase_ci_low": 0.09339895020684748,
+      "repurchase_ci_high": 0.12818876022956469,
+      "lapse_ci_low": 0.8718112397704353,
+      "lapse_ci_high": 0.9066010497931525,
+      "is_targeted": false,
+      "at_risk_per_customer": 96.82714121242023,
+      "share_of_total_at_risk": 0.14407637806247095
+    },
+    {
+      "segment": "At risk, high frequency",
+      "customers": 387,
+      "customer_share": 0.09014675052410902,
+      "trailing_12m_net_revenue": 603336.27,
+      "revenue_share": 0.07607081540616088,
+      "avg_recency_days": 133.67700258397932,
+      "avg_frequency": 4.330749354005168,
+      "same_season_customers": 466,
+      "same_season_repurchasers": 161,
+      "same_season_repurchase_rate": 0.34549356223175964,
+      "same_season_lapse_rate": 0.6545064377682404,
+      "repurchase_rate_min": 0.2682926829268293,
+      "repurchase_rate_max": 0.5656565656565656,
+      "pooled_repurchase_rate": 0.3871951219512195,
+      "same_season_next_q_revenue_per_customer": 216.11710300429186,
+      "revenue_at_risk_next_quarter": 98721.86821351947,
+      "revenue_at_risk_pooled_rates": 92431.85233993917,
+      "repurchase_ci_low": 0.303739417207661,
+      "repurchase_ci_high": 0.3897743116745835,
+      "lapse_ci_low": 0.6102256883254165,
+      "lapse_ci_high": 0.6962605827923389,
+      "is_targeted": true,
+      "at_risk_per_customer": 255.0952667016007,
+      "share_of_total_at_risk": 0.1091349812175492
+    },
+    {
+      "segment": "Recent, low frequency",
+      "customers": 535,
+      "customer_share": 0.12462147682273468,
+      "trailing_12m_net_revenue": 255142.13,
+      "revenue_share": 0.032169240999823705,
+      "avg_recency_days": 15.540186915887851,
+      "avg_frequency": 1.4822429906542056,
+      "same_season_customers": 546,
+      "same_season_repurchasers": 136,
+      "same_season_repurchase_rate": 0.2490842490842491,
+      "same_season_lapse_rate": 0.7509157509157509,
+      "repurchase_rate_min": 0.2490842490842491,
+      "repurchase_rate_max": 0.5161290322580645,
+      "pooled_repurchase_rate": 0.3618421052631579,
+      "same_season_next_q_revenue_per_customer": 113.08998168498168,
+      "revenue_at_risk_next_quarter": 47897.56103479852,
+      "revenue_at_risk_pooled_rates": 40705.2411348684,
+      "repurchase_ci_low": 0.21464503962317671,
+      "repurchase_ci_high": 0.28702962449827196,
+      "lapse_ci_low": 0.712970375501728,
+      "lapse_ci_high": 0.7853549603768233,
+      "is_targeted": false,
+      "at_risk_per_customer": 89.52815146691312,
+      "share_of_total_at_risk": 0.05294976197769423
+    },
+    {
+      "segment": "Cooling",
+      "customers": 471,
+      "customer_share": 0.10971348707197764,
+      "trailing_12m_net_revenue": 233964.641,
+      "revenue_share": 0.02949910672050215,
+      "avg_recency_days": 49.7791932059448,
+      "avg_frequency": 1.365180467091295,
+      "same_season_customers": 445,
+      "same_season_repurchasers": 89,
+      "same_season_repurchase_rate": 0.2,
+      "same_season_lapse_rate": 0.8,
+      "repurchase_rate_min": 0.17842323651452283,
+      "repurchase_rate_max": 0.5013262599469496,
+      "pooled_repurchase_rate": 0.2867448151487827,
+      "same_season_next_q_revenue_per_customer": 64.35732584269662,
+      "revenue_at_risk_next_quarter": 46792.928200000024,
+      "revenue_at_risk_pooled_rates": 41719.12331627594,
+      "repurchase_ci_low": 0.16547292754881796,
+      "repurchase_ci_high": 0.2396624253239996,
+      "lapse_ci_low": 0.7603375746760004,
+      "lapse_ci_high": 0.8345270724511821,
+      "is_targeted": false,
+      "at_risk_per_customer": 99.34804288747351,
+      "share_of_total_at_risk": 0.05172861325087635
+    }
+  ],
+  "scenario": [
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "customers_contacted": 1941,
+      "total_revenue_at_risk": 904585.0112598427,
+      "targeted_revenue_at_risk": 679565.1899531265,
+      "recovered_revenue": 33978.25949765633,
+      "recovered_revenue_pooled_rates": 25995.766578263956,
+      "recovered_revenue_per_contact": 17.50554327545406
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "customers_contacted": 1941,
+      "total_revenue_at_risk": 904585.0112598427,
+      "targeted_revenue_at_risk": 679565.1899531265,
+      "recovered_revenue": 67956.51899531265,
+      "recovered_revenue_pooled_rates": 51991.53315652791,
+      "recovered_revenue_per_contact": 35.01108655090812
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "customers_contacted": 1941,
+      "total_revenue_at_risk": 904585.0112598427,
+      "targeted_revenue_at_risk": 679565.1899531265,
+      "recovered_revenue": 135913.0379906253,
+      "recovered_revenue_pooled_rates": 103983.06631305582,
+      "recovered_revenue_per_contact": 70.02217310181624
+    }
+  ],
+  "scenario_segments": [
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "segment": "Champions",
+      "customers": 951,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 440520.8916412464,
+      "recovered_revenue": 22026.04458206232,
+      "recovered_revenue_per_contact": 23.160930159897287
+    },
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "segment": "Loyal",
+      "customers": 603,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 140322.4300983606,
+      "recovered_revenue": 7016.121504918031,
+      "recovered_revenue_per_contact": 11.635359046298559
+    },
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "segment": "Dormant",
+      "customers": 1346,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 130329.33207191763,
+      "recovered_revenue": 6516.466603595882,
+      "recovered_revenue_per_contact": 4.841357060621012
+    },
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "segment": "At risk, high frequency",
+      "customers": 387,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 98721.86821351947,
+      "recovered_revenue": 4936.093410675974,
+      "recovered_revenue_per_contact": 12.754763335080037
+    },
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "segment": "Recent, low frequency",
+      "customers": 535,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 47897.56103479852,
+      "recovered_revenue": 2394.878051739926,
+      "recovered_revenue_per_contact": 4.476407573345656
+    },
+    {
+      "case_name": "low",
+      "lapse_reduction": 0.05,
+      "segment": "Cooling",
+      "customers": 471,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 46792.928200000024,
+      "recovered_revenue": 2339.646410000001,
+      "recovered_revenue_per_contact": 4.9674021443736756
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "segment": "Champions",
+      "customers": 951,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 440520.8916412464,
+      "recovered_revenue": 44052.08916412464,
+      "recovered_revenue_per_contact": 46.321860319794574
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "segment": "Loyal",
+      "customers": 603,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 140322.4300983606,
+      "recovered_revenue": 14032.243009836062,
+      "recovered_revenue_per_contact": 23.270718092597118
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "segment": "Dormant",
+      "customers": 1346,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 130329.33207191763,
+      "recovered_revenue": 13032.933207191763,
+      "recovered_revenue_per_contact": 9.682714121242023
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "segment": "At risk, high frequency",
+      "customers": 387,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 98721.86821351947,
+      "recovered_revenue": 9872.186821351948,
+      "recovered_revenue_per_contact": 25.509526670160074
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "segment": "Recent, low frequency",
+      "customers": 535,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 47897.56103479852,
+      "recovered_revenue": 4789.756103479852,
+      "recovered_revenue_per_contact": 8.952815146691313
+    },
+    {
+      "case_name": "mid",
+      "lapse_reduction": 0.1,
+      "segment": "Cooling",
+      "customers": 471,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 46792.928200000024,
+      "recovered_revenue": 4679.292820000002,
+      "recovered_revenue_per_contact": 9.934804288747351
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "segment": "Champions",
+      "customers": 951,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 440520.8916412464,
+      "recovered_revenue": 88104.17832824928,
+      "recovered_revenue_per_contact": 92.64372063958915
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "segment": "Loyal",
+      "customers": 603,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 140322.4300983606,
+      "recovered_revenue": 28064.486019672124,
+      "recovered_revenue_per_contact": 46.541436185194236
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "segment": "Dormant",
+      "customers": 1346,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 130329.33207191763,
+      "recovered_revenue": 26065.866414383527,
+      "recovered_revenue_per_contact": 19.365428242484047
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "segment": "At risk, high frequency",
+      "customers": 387,
+      "is_targeted": true,
+      "revenue_at_risk_next_quarter": 98721.86821351947,
+      "recovered_revenue": 19744.373642703897,
+      "recovered_revenue_per_contact": 51.01905334032015
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "segment": "Recent, low frequency",
+      "customers": 535,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 47897.56103479852,
+      "recovered_revenue": 9579.512206959704,
+      "recovered_revenue_per_contact": 17.905630293382625
+    },
+    {
+      "case_name": "high",
+      "lapse_reduction": 0.2,
+      "segment": "Cooling",
+      "customers": 471,
+      "is_targeted": false,
+      "revenue_at_risk_next_quarter": 46792.928200000024,
+      "recovered_revenue": 9358.585640000005,
+      "recovered_revenue_per_contact": 19.869608577494702
+    }
+  ],
+  "scenario_inputs": {
+    "base_customers": 4293,
+    "base_trailing_12m_net_revenue": 7931244.943,
+    "base_quarterly_run_rate": 1982811.23575,
+    "total_revenue_at_risk": 904585.0112598427,
+    "at_risk_share_of_run_rate": 0.4562133777286584,
+    "targeted_customers": 1941,
+    "targeted_customer_share": 0.45213137665967856,
+    "targeted_revenue_share": 0.8645122878283549,
+    "targeted_revenue_at_risk": 679565.1899531265,
+    "targeted_share_of_at_risk": 0.7512452467089584,
+    "targeted_lapse_rate": 0.4698861004093619,
+    "expected_next_q_revenue_do_nothing": 1326574.3529932797,
+    "base_weighted_lapse_rate": 0.672975075313168
+  },
+  "snapshots": [
+    {
+      "snapshot_date": "2010-09-01",
+      "kind": "backtest",
+      "is_same_season": false
+    },
+    {
+      "snapshot_date": "2010-12-01",
+      "kind": "backtest",
+      "is_same_season": true
+    },
+    {
+      "snapshot_date": "2011-03-01",
+      "kind": "backtest",
+      "is_same_season": false
+    },
+    {
+      "snapshot_date": "2011-06-01",
+      "kind": "backtest",
+      "is_same_season": false
+    },
+    {
+      "snapshot_date": "2011-09-01",
+      "kind": "backtest",
+      "is_same_season": false
+    },
+    {
+      "snapshot_date": "2011-12-01",
+      "kind": "current",
+      "is_same_season": false
+    }
+  ],
+  "params": {
+    "window_start": "2009-12-01",
+    "window_end_excl": "2011-12-01",
+    "large_qty_threshold": 5000,
+    "current_snapshot": "2011-12-01",
+    "rfm_window_days": 365,
+    "outcome_months": 3
+  }
+}

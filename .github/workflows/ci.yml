@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[serve,dev,notebooks]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - name: Tests (synthetic fixture only, no dataset download needed)
+        run: pytest
+      - name: SQL pipeline, exports and reports end to end on the fixture
+        run: retail run-all --fixture --out /tmp/retail_out
+      - name: Exploratory notebook runs end to end on the fixture
+        run: retail run-notebooks --fixture --out /tmp/retail_out

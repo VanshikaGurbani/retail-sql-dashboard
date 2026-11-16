@@ -1,0 +1,6 @@
+[theme]
+# Okabe-Ito blue instead of the default red, which also reads poorly for some colour-blind users
+primaryColor = "#0072B2"
+
+[browser]
+gatherUsageStats = false

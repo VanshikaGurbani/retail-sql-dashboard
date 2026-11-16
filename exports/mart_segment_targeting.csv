@@ -1,0 +1,7 @@
+segment,customers,revenue_share,same_season_lapse_rate,revenue_at_risk_next_quarter,revenue_at_risk_pooled_rates,expected_next_q_revenue_do_nothing,at_risk_per_customer,share_of_total_at_risk,is_targeted
+Champions,951,0.6629,0.3351,440520.89,312222.7543,912682.9,463.22,0.487,True
+Loyal,603,0.1255,0.5639,140322.43,115260.7249,180983.01,232.71,0.1551,True
+Dormant,1346,0.0738,0.8904,130329.33,115256.2466,58455.68,96.83,0.1441,False
+"At risk, high frequency",387,0.0761,0.6545,98721.87,92431.8523,83637.32,255.1,0.1091,True
+"Recent, low frequency",535,0.0322,0.7509,47897.56,40705.2411,60503.14,89.53,0.0529,False
+Cooling,471,0.0295,0.8,46792.93,41719.1233,30312.3,99.35,0.0517,False
